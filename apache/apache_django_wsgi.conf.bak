@@ -1,0 +1,15 @@
+WSGIScriptAlias /static/ "E:/myblog/static/"
+<Directory "E:/myblog/static">
+Allow from all
+</Directory>
+WSGIScriptAlias / "E:/myblog/apache/django.wsgi"
+<Directory "E:/myblog/apache">
+Allow from all
+</Directory>
+
+WSGIScriptAlias /static/admin C:/Python27/Lib/site-packages/django/contrib/admin
+ 
+<Directory "C:/Python27/Lib/site-packages/django/contrib/admin">
+Order Deny,Allow
+Allow from all
+</Directory>

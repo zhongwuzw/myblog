@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block content %}
+<h2>欢迎来到图片馆</h2>
+<p>在这里，你能找到各种各样的图片，下面是一些非常出色的图片，点击下面的链接来查看所有列表</p>
+
+<h3>展示区</h3>
+<table>
+<tr>
+{% for item in item_list|slice:":6" %}
+<td>
+	<a href="{% url 'item_detail' item.id %}"><b>{{ item.name }}</b><br/>
+		{% if item.photo_set.count %}
+		<img src="/static/{{item.photo_set.all.0.image.thumb_url}}"/>
+		{% else %}
+		<span>还没有图片</span>
+		{% endif %}
+	</a>
+</td>
+{% endfor %}
+</tr>
+</table>
+<p><a href="{% url 'item_list' %}"></a></p>
+{% endblock %}

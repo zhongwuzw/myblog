@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}条目描述列表{% endblock %}
+{% block content %}
+<p><a href="{% url 'index' %}">&laquo; 回到首页</a></p>
+<h2>条目</h2>
+{% if items_list %}
+<table>
+<tr>
+	<th>名字</th>
+	<th>缩略图</th>
+	<th>描述</th>
+</tr>
+{% for item in items_list %}
+<tr>
+	<td>
+		<i>{{ item.name }}</i>
+	</td>
+	<td>
+		{% if item.photo_set.count %}
+		<a >
+			<img src="{{STATIC_URL_ROOT}}{{item.photo_set.all.0.image.thumb_url}}"/>
+		</a>
+		{% else %}
+		当前没有上传的图片!
+		{% endif %}
+	</td>
+</tr>
+{% endfor %}
+{% else %}
+<p>当前没有能够展示的条目</p>
+</table>
+{% endif %}
+{% endblock %}

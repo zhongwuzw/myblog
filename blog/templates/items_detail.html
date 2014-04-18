@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{item_detail.name}}
+{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'item_list' %}">&laquo;返回所有列表页</a></p>
+<h2>{{item_detail.name}}</h2>
+<p>{{item_detail.description}}</p>
+
+<h3>图片</h3>
+<table>
+	<tr>
+		<th>标题</th>
+		<th>缩略图</th>
+		<th>图片说明</th>
+	</tr>
+	{% for photo in item_detail.photo_set.all %}
+	<tr>
+		<td><i>{{photo.title}}</i></td>
+		<td>
+			<a href="{{photo.get_absolute_url}}">
+				<img src="{{STATIC_URL_ROOT}}{{photo.image.thumb_url}}"/>
+			</a>
+		</td>
+		<td>{{photo.caption}}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
