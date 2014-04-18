@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from cms.models import Story
 from cms.views import CmsStoryView,CmsHomeView,SearchView,CategoryView
 urlpatterns = patterns('',
     url(r'^$',CmsHomeView.as_view(),name = 'cms-home'),
