@@ -30,6 +30,10 @@ class CategoryView(TemplateView):
     template_name = 'story_list.html'
     
     def get_context_data(self, **kwargs):
+        print self.request
+        print self.args
+        print self.kwargs
+        
         context = super(CategoryView,self).get_context_data(**kwargs)
         category = get_object_or_404(Category,slug = kwargs['slug'])
         context['category'] = category
