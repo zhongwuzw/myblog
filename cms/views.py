@@ -15,16 +15,17 @@ from django.views.decorators.csrf import csrf_exempt
 #     return render_to_response('story_list.html',locals(),context_instance = RequestContext(request))
 
 class SearchView(View):
-    @csrf_exempt
-    def dispatch(self,*args,**kwargs):
-        return super(SearchView,self).dispatch(*args,**kwargs)
+#     @csrf_exempt
+#     def dispatch(self,*args,**kwargs):
+#         return super(SearchView,self).dispatch(*args,**kwargs)
     
     def post(self,request):
         if 'q' in request.POST:
             term = request.POST['q']
             story_list = Story.objects.filter(Q(title__contains = term) | Q(markdown_content__contains = term))
             heading = 'Search results'
-        return render_to_response('story_list.html',locals())
+        return render(request,'story_list.html',locals())
+#         return render_to_response('story_list.html',locals())
 
 class CategoryView(TemplateView):
     template_name = 'story_list.html'
